@@ -1,0 +1,57 @@
+<!-- Pig Latin translator by Eric Staciwo, 1/14/24 -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="script.js"></script>
+</head>
+<h1>Pig Latin Translator</h1>
+<script>
+
+    // check length of input
+    if (userInput.length > 1) {
+    
+        // check first letter for vowel
+        if (userInput.slice(0,1) == "a"
+        || userInput.slice(0,1) == "e"
+        || userInput.slice(0,1) == "i"
+        || userInput.slice(0,1) == "o"
+        || userInput.slice(0,1) == "u") {
+
+            // convert to pig latin with first letter uppercase
+            document.write(userInput.slice(0,1).toUpperCase() + userInput.slice(1) + "way");
+
+    } else {
+        
+        // check second letter for vowel
+        if(userInput.slice(1,2) == "a"
+        || userInput.slice(1,2) == "e"
+        || userInput.slice(1,2) == "i"
+        || userInput.slice(1,2) == "o"
+        || userInput.slice(1,2) == "u") {
+
+            // convert to pig latin with first letter uppercase
+            document.write(userInput.slice(1,2).toUpperCase() + userInput.slice(2) + userInput.slice(0,1) + "ay");
+            
+        } else {
+
+            // convert to pig latin with first letter uppercase
+            document.write(userInput.slice(2,3).toUpperCase() + userInput.slice(3) + userInput.slice(0,2) + "ay");
+        }
+    }
+
+    }
+
+    else {
+        // warn user of input length condition
+        document.write("Please enter a word longer than one letter.");
+    }
+
+</script>
+<body>
+    
+</body>
+</html>
