@@ -1,0 +1,48 @@
+<!-- Grade Printer by Eric Staciwo, 1/21/24 -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="script.js"></script>
+</head>
+<h1>Grade Printer</h1>
+<script>
+
+// converting string to arrays; average calculation; formatting
+for (let i = 0; i < gradeArray.length; i++){
+  gradeArray.sort();
+  let studentName = gradeArray[i].slice(0,-3);
+  nuStudent.push(gradeArray[i].slice(0,-3));
+  let gradeNum = parseInt(gradeArray[i].slice(-2));
+  nuGrades.push(parseInt(gradeArray[i].slice(-2)));
+  total += gradeNum;
+  avg = total / gradeArray.length;
+  document.write(studentName.slice(0,1).toUpperCase() + studentName.slice(1) + " - " + gradeNum + "<br>");
+
+}
+
+// finding highest and lowest grades
+for (let i in nuGrades) {
+    if (nuGrades[i] > hiGrade) {
+     hiGrade = nuGrades[i];
+    }
+
+    if (nuGrades[i] < loGrade) {
+         loGrade = nuGrades[i];
+    }
+}
+
+// printing results to screen
+document.write("<p> Number of students = " + gradeArray.length + "</p><br>");
+document.write("Average grade = " + avg + "</p><br>");
+document.write("Highest grade = " + hiGrade + "<br>");
+document.write("Lowest grade = " + loGrade);
+
+</script>
+<body>
+    
+</body>
+</html>
