@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+</head>
+<body>
+
+<h1>Functions & validation</h1>
+
+<form id="form1" action="#" onsubmit="return validateForm(this);">
+  first name: <input type="text" name="firstname"><br>
+  last name: <input type="text" name="lastname"><br>
+  password: <input type="text" name="password"><br>
+
+  <button >Check</button>
+</form>
+
+<hr><div id="message1"></div>
+<hr><div id="message2"></div>
+<hr><div id="message3"></div>
+
+<script>
+
+const validateForm = (myForm) => {
+
+  var firstname = myForm.firstname.value; // get text of firstname field
+
+
+
+
+  var lastname = myForm.lastname.value; 
+  var password = myForm.password.value; 
+
+  if (firstname != "") {
+      
+      $("#message1").html("First name is valid");
+  } else {
+      
+      $("#message1").html("Please enter your first name");
+  }
+
+    if (lastname != "") {
+      
+      $("#message2").html("Last name is valid");
+  } else {
+    
+      $("#message2").html("Please enter your last name");
+  }
+
+  
+
+  const validatePassword = (password) => {
+    const regex1 = /[a-z]+/;
+    const regex2 = /[A-Z]+/;
+
+    const regResult1 = regex1.test(password);
+    const regResult2 = regex2.test(password);
+    
+    if (password.length >= 8 && regResult1 == true && regResult2 == true) {
+
+          $("#message3").html("Password is valid");
+      } else {
+          
+          $("#message3").html("Please enter a valid password");
+      }
+  }
+
+  validatePassword(password);
+ 
+  return false; // prevent page reload
+}
+
+</script>
+
+</body>
+</html>
