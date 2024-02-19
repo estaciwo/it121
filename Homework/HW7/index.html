@@ -1,3 +1,5 @@
+<!-- HW 7 - Potterific by Eric Staciwo -->
+
 <html>
     <head>
         <script
@@ -59,7 +61,8 @@
         ];
 
       $(document).ready(function(){
-
+        
+        // iterating through array to turn each entry into a table row with corresponding cells
         let makeTable = () => {
           var table = document.getElementById("chartable");
           for (var i = 0; i < characters.length; i++) {
@@ -79,42 +82,37 @@
           
         }
         
-      makeTable();
+        // calling function to create table
+        makeTable();
 
-      const gryff = $('#gryff');
-      const huff = $('#huff');
-      const slyth = $('#slyth');
-      const raven = $('#raven');
-      const reset = $('#reset');
+        // assigning button IDs to variables
+        const gryff = $('#gryff');
+        const huff = $('#huff');
+        const slyth = $('#slyth');
+        const raven = $('#raven');
+        const reset = $('#reset');
 
+        // creating functions to hide non-clicked Houses
 	    gryff.on("click", () => {
-        $("tr:not(:contains('Gryffindor'), #toprow)").hide()
+            $("tr:not(:contains('Gryffindor'), #toprow)").hide()
 	    });
 
-      huff.on("click", () => {
-        $("tr:not(:contains('Hufflepuff'), #toprow)").hide()
+        huff.on("click", () => {
+            $("tr:not(:contains('Hufflepuff'), #toprow)").hide()
 	    });
 
-      slyth.on("click", () => {
-        $("tr:not(:contains('Slytherin'), #toprow)").hide()
+        slyth.on("click", () => {
+            $("tr:not(:contains('Slytherin'), #toprow)").hide()
 	    });
 
-      raven.on("click", () => {
-        $("tr:not(:contains('Ravenclaw'), #toprow)").hide()
+        raven.on("click", () => {
+            $("tr:not(:contains('Ravenclaw'), #toprow)").hide()
 	    });
 
-      reset.on("click", () => {
-        $("tr:contains('Gryffindor'), tr:contains('Hufflepuff'), tr:contains('Slytherin'), tr:contains('Ravenclaw') ").show()
+        // shows all Houses
+        reset.on("click", () => {
+            $("tr:contains('Gryffindor'), tr:contains('Hufflepuff'), tr:contains('Slytherin'), tr:contains('Ravenclaw') ").show()
 	    });
-
-    
-        /*
-        - set visible rows to alternating background color
-            
-        - add click handler to show only rows matching selected 'house'. Enable buttons to call this handler. 
-        
-        - add click handler to reset table 
-        */
 
         });
 
