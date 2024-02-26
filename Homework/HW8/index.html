@@ -1,0 +1,75 @@
+<!-- HW 8 - Sunny with a Chance of Awesome by Eric Staciwo -->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+</head>
+<body>
+
+<h1>Five-Day Forecast</h1>
+
+<form id="form1" action="#" onsubmit="return validateForm(this);">
+  Enter city: <input type="text" name="cityname"><br>
+
+  <button type="submit" form="form1" value="Submit">Search</button>
+</form>
+<table>
+<tr><td id="maintext">Your forecast is:</td></tr>
+<tr id="temperature-list">
+</tr>
+</table>
+
+<script>
+
+const validateForm = (myForm) => {
+
+// get text of cityname field
+var cityname = myForm.cityname.value; 
+
+// appending cityname field value to API query
+var weatherAPI = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityname + ",us&APPID=ed48ef0f28cb52d8c84705d282e117c0";
+
+// confirming field has content
+if (cityname != "") {
+
+  // retrieving weather API data
+  fetch(weatherAPI).then((response) => response.json())
+  .then(data => {
+    const temperatureList = document.getElementById("temperature-list");
+    let i = 0;
+    data.list.forEach(item => {
+      if(i < 5){
+      const numdate = item.dt_txt;
+      const temp_kel_min = item.main.temp_min;
+      const temp_kel_max = item.main.temp_max;
+      const humid = item.main.humidity;
+      const descrip = item.weather[0].description;
+
+      // convert kelvin results to fahrenheit
+      const kelvinToF = (value) => {
+        let fahrenheit = (((Number(value) - 273.15)*9)/5) + 32;
+        return fahrenheit.toFixed(2);
+      }
+
+      // limiting results to first 5
+      const rowEntry = document.createElement("td");
+      rowEntry.textContent = `Date: ${numdate} | Minimum Temperature: ${kelvinToF(temp_kel_min)} degrees Fahrenheit | Maximum Temperature: ${kelvinToF(temp_kel_max)} degrees Fahrenheit | Humidity: ${humid} | Description: ${descrip}`;
+      
+      // adding each new day to row
+      temperatureList.appendChild(rowEntry);
+      i++;
+      }
+    })
+  })
+  .catch(err => console.log(err));
+
+} else {
+  $("#maintext").html("Please enter a city.");
+}
+}
+
+</script>
+
+</body>
+</html>
