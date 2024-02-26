@@ -39,27 +39,29 @@ if (cityname != "") {
     const temperatureList = document.getElementById("temperature-list");
     let i = 0;
     data.list.forEach(item => {
-      if(i < 5){
-      const numdate = item.dt_txt;
-      const temp_kel_min = item.main.temp_min;
-      const temp_kel_max = item.main.temp_max;
-      const humid = item.main.humidity;
-      const descrip = item.weather[0].description;
+    
+        // limiting results to first 5
+        if(i < 5){
+        const numdate = item.dt_txt;
+        const temp_kel_min = item.main.temp_min;
+        const temp_kel_max = item.main.temp_max;
+        const humid = item.main.humidity;
+        const descrip = item.weather[0].description;
 
-      // convert kelvin results to fahrenheit
-      const kelvinToF = (value) => {
-        let fahrenheit = (((Number(value) - 273.15)*9)/5) + 32;
-        return fahrenheit.toFixed(2);
-      }
+        // convert kelvin results to fahrenheit
+        const kelvinToF = (value) => {
+            let fahrenheit = (((Number(value) - 273.15)*9)/5) + 32;
+            return fahrenheit.toFixed(2);
+        }
 
-      // limiting results to first 5
-      const rowEntry = document.createElement("td");
-      rowEntry.textContent = `Date: ${numdate} | Minimum Temperature: ${kelvinToF(temp_kel_min)} degrees Fahrenheit | Maximum Temperature: ${kelvinToF(temp_kel_max)} degrees Fahrenheit | Humidity: ${humid} | Description: ${descrip}`;
-      
-      // adding each new day to row
-      temperatureList.appendChild(rowEntry);
-      i++;
-      }
+        // creating HTML content from results
+        const rowEntry = document.createElement("td");
+        rowEntry.textContent = `Date: ${numdate} | Minimum Temperature: ${kelvinToF(temp_kel_min)} degrees Fahrenheit | Maximum Temperature: ${kelvinToF(temp_kel_max)} degrees Fahrenheit | Humidity: ${humid} | Description: ${descrip}`;
+        
+        // adding each new day to row
+        temperatureList.appendChild(rowEntry);
+        i++;
+        }
     })
   })
   .catch(err => console.log(err));
