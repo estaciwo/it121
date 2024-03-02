@@ -7,25 +7,28 @@
 </head>
 <body>
 
+
 <h1>Five-Day Forecast</h1>
 
-<form id="form1" action="#" onsubmit="return validateForm(this);">
+<form id="form1">
   Enter city: <input type="text" name="cityname"><br>
 
-  <button type="submit" form="form1" value="Submit">Search</button>
+  <button type="submit">Search</button>
 </form>
-<table>
-<tr><td id="maintext">Your forecast is:</td></tr>
-<tr id="temperature-list">
-</tr>
-</table>
+
+<h2 id="maintext">Your forecast is:</h2>
+<ul id="temperature-list">
+</ul>
+
 
 <script>
+// assigning button IDs to variables
 
-const validateForm = (myForm) => {
+const validateForm = (event) => {
+event.preventDefault();
 
 // get text of cityname field
-var cityname = myForm.cityname.value; 
+var cityname = $('#form1 input[name="cityname"]').val(); 
 
 // appending cityname field value to API query
 var weatherAPI = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityname + ",us&APPID=ed48ef0f28cb52d8c84705d282e117c0";
@@ -55,8 +58,8 @@ if (cityname != "") {
         }
 
         // creating HTML content from results
-        const rowEntry = document.createElement("td");
-        rowEntry.textContent = `Date: ${numdate} | Minimum Temperature: ${kelvinToF(temp_kel_min)} degrees Fahrenheit | Maximum Temperature: ${kelvinToF(temp_kel_max)} degrees Fahrenheit | Humidity: ${humid} | Description: ${descrip}`;
+        const rowEntry = document.createElement("li");
+        rowEntry.textContent = `Date: ${numdate}, Minimum Temperature: ${kelvinToF(temp_kel_min)} degrees Fahrenheit, Maximum Temperature: ${kelvinToF(temp_kel_max)} degrees Fahrenheit, Humidity: ${humid}, Description: ${descrip}`;
         
         // adding each new day to row
         temperatureList.appendChild(rowEntry);
@@ -69,8 +72,13 @@ if (cityname != "") {
 } else {
   $("#maintext").html("Please enter a city.");
 }
+
 }
 
+// validating form upon submission
+$(document).ready(function() {
+      $("#form1").submit(validateForm);
+    });
 </script>
 
 </body>
