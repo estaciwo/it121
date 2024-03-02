@@ -50,6 +50,7 @@ if (cityname != "") {
         const temp_kel_max = item.main.temp_max;
         const humid = item.main.humidity;
         const descrip = item.weather[0].description;
+        const iconCode = item.weather[0].icon;
 
         // convert kelvin results to fahrenheit
         const kelvinToF = (value) => {
@@ -59,10 +60,17 @@ if (cityname != "") {
 
         // creating HTML content from results
         const rowEntry = document.createElement("li");
-        rowEntry.textContent = `Date: ${numdate}, Minimum Temperature: ${kelvinToF(temp_kel_min)} degrees Fahrenheit, Maximum Temperature: ${kelvinToF(temp_kel_max)} degrees Fahrenheit, Humidity: ${humid}, Description: ${descrip}`;
-        
-        // adding each new day to row
+        rowEntry.textContent = `Date: ${numdate} / Minimum Temperature: ${kelvinToF(temp_kel_min)} degrees Fahrenheit / Maximum Temperature: ${kelvinToF(temp_kel_max)} degrees Fahrenheit / Humidity: ${humid} / Description: ${descrip}`;
+
+        // creating icon variable with dynamic URL that updates icon code
+        const icon = document.createElement("img");
+        icon.setAttribute("src", `https://openweathermap.org/img/w/${iconCode}.png`);
+    
+        // adding each new entry to row
         temperatureList.appendChild(rowEntry);
+
+        // adding icon to end of day
+        rowEntry.appendChild(icon);
         i++;
         }
     })
