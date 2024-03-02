@@ -90,28 +90,32 @@
         const huff = $('#huff');
         const slyth = $('#slyth');
         const raven = $('#raven');
-        const reset = $('#reset');
+        // const reset = $('#reset');
+
+        // shows all Houses
+        let resetFields = () => {
+        $("tr:contains('Gryffindor'), tr:contains('Hufflepuff'), tr:contains('Slytherin'), tr:contains('Ravenclaw') ").show()
+        }
 
         // creating functions to hide non-clicked Houses
 	    gryff.on("click", () => {
+            resetFields();
             $("tr:not(:contains('Gryffindor'), #toprow)").hide()
 	    });
 
         huff.on("click", () => {
+            resetFields();
             $("tr:not(:contains('Hufflepuff'), #toprow)").hide()
 	    });
 
         slyth.on("click", () => {
+            resetFields();
             $("tr:not(:contains('Slytherin'), #toprow)").hide()
 	    });
 
         raven.on("click", () => {
+            resetFields();
             $("tr:not(:contains('Ravenclaw'), #toprow)").hide()
-	    });
-
-        // shows all Houses
-        reset.on("click", () => {
-            $("tr:contains('Gryffindor'), tr:contains('Hufflepuff'), tr:contains('Slytherin'), tr:contains('Ravenclaw') ").show()
 	    });
 
         });
