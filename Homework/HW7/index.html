@@ -34,7 +34,7 @@
         <button id="slyth">Slytherin</button>
         <button id="raven">Ravenclaw</button>
 
-        <button id="reset">reset</button>
+        <button id="reset" onclick="resetFields()">reset</button>
 
     </body>
         
@@ -90,7 +90,7 @@
         const huff = $('#huff');
         const slyth = $('#slyth');
         const raven = $('#raven');
-        // const reset = $('#reset');
+        const reset = $('#reset');
 
         // shows all Houses
         let resetFields = () => {
@@ -116,6 +116,10 @@
         raven.on("click", () => {
             resetFields();
             $("tr:not(:contains('Ravenclaw'), #toprow)").hide()
+	    });
+
+        reset.on("click", () => {
+            resetFields();
 	    });
 
         });
