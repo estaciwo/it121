@@ -1,0 +1,249 @@
+<!-- HW 9 - Draw Me a Picture by Eric Staciwo -->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+</head>
+<body>
+
+<h1>Canvas Drawing</h1>
+
+<!-- creating instance of Canvas -->
+<canvas id="myCanvas" width="1000" height="600"></canvas>
+<script>
+
+  const myCanvas = document.getElementById("myCanvas");
+  myCanvas.style.background = "beige"
+  myCanvas.style.border = "2px solid red"
+
+  const ctx = myCanvas.getContext("2d");
+
+  // creating variables to affect via animation
+  var hand1 = 500;
+  var hand2 = 200;
+  var colorChange1 = 1;
+  var colorChange2 = 2;
+  var wavex = 500;
+  var velx = 1;
+  var rotater = 1;
+
+// begin animation
+const anim = () => {
+    requestAnimationFrame(anim)
+      ctx.clearRect(0,0, innerWidth, innerHeight);
+
+  // creating rectangles and rotating them
+  ctx.save();
+  ctx.rotate(-0.12);
+  ctx.fillStyle = "blue"
+  ctx.strokeStyle = "purple"
+  ctx.lineWidth = 20;
+  ctx.fillRect(0,0,100,200)
+  ctx.fillStyle = "yellow"
+  ctx.fillRect(0,300,200,300)
+  ctx.strokeRect(0,300,200,300)
+  ctx.restore();
+
+  ctx.beginPath();
+  ctx.arc(100,100,50,0, Math.PI*2, false);
+  ctx.strokeStyle = "orange";
+  ctx.lineWidth = 30;
+  ctx.stroke();
+  ctx.closePath();
+
+  ctx.beginPath();
+  ctx.arc(150,150,50,0, Math.PI*2, false);
+  ctx.strokeStyle = "pink";
+  ctx.lineWidth = 4;
+  ctx.stroke();
+  ctx.closePath();
+
+  ctx.beginPath();
+  ctx.strokeStyle = "green";
+  ctx.lineWidth = 3;
+  ctx.moveTo(100,190);
+  ctx.lineTo(120,230);
+  ctx.stroke();
+
+  ctx.beginPath();
+  ctx.moveTo(110,190);
+  ctx.lineTo(130,230);
+  ctx.stroke();
+
+  ctx.beginPath();
+  ctx.moveTo(120,190);
+  ctx.lineTo(140,230);
+  ctx.stroke();
+
+  ctx.beginPath();
+  ctx.moveTo(130,190);
+  ctx.lineTo(150,230);
+  ctx.stroke();
+
+  ctx.beginPath();
+  ctx.moveTo(140,190);
+  ctx.lineTo(160,230);
+  ctx.stroke();
+
+  ctx.beginPath();
+  ctx.lineWidth = 8;
+  ctx.moveTo(150,190);
+  ctx.lineTo(170,230);
+  ctx.stroke();
+  
+  ctx.beginPath();
+  ctx.arc(500,300,10,0, Math.PI*2, false);
+  ctx.strokeStyle = "black";
+  ctx.lineWidth = 5;
+  ctx.fillStyle = "white"
+  ctx.fill();
+  ctx.stroke();
+  ctx.closePath();
+
+  ctx.setLineDash([6,10]);
+  ctx.beginPath();
+  ctx.arc(500,300,150,0, Math.PI*2, false);
+  ctx.strokeStyle = "red";
+  ctx.lineWidth = 20;
+  ctx.stroke();
+  ctx.closePath();
+  ctx.setLineDash([]);
+
+  ctx.beginPath();
+  ctx.strokeStyle = `#${colorChange2}0000${colorChange1}`;
+  ctx.lineWidth = 3;
+  ctx.moveTo(500,300);
+  ctx.lineTo(hand1,150);
+  ctx.stroke();
+  ctx.moveTo(500,300);
+  ctx.lineTo(600,hand2);
+  ctx.stroke();
+
+  // moving "clock hands" and changing colors
+  hand1 += 20;
+  hand2 -= 40;
+  colorChange1 += 2;
+  colorChange2 += 1;
+
+  ctx.beginPath();
+  ctx.arc(wavex,475,90,0, Math.PI*.5, false);
+  ctx.strokeStyle = "lightblue";
+  ctx.lineWidth = 10;
+  ctx.stroke();
+  ctx.closePath();
+
+  ctx.beginPath();
+  ctx.arc((wavex + 180),475,90, 0, Math.PI, false );
+  ctx.strokeStyle = "lightblue";
+  ctx.lineWidth = 10;
+  ctx.stroke();
+  ctx.closePath();
+
+  ctx.beginPath();
+  ctx.arc((wavex + (180*2)),475,90, 0, Math.PI, false );
+  ctx.strokeStyle = "lightblue";
+  ctx.lineWidth = 10;
+  ctx.stroke();
+  ctx.closePath();
+
+  ctx.beginPath();
+  ctx.arc((wavex + (180*3)),475,90, 0, Math.PI, false );
+  ctx.strokeStyle = "lightblue";
+  ctx.lineWidth = 10;
+  ctx.stroke();
+  ctx.closePath();
+
+  ctx.beginPath();
+  ctx.arc((wavex + (180*4)),475,90, 0, Math.PI, false );
+  ctx.strokeStyle = "lightblue";
+  ctx.lineWidth = 10;
+  ctx.stroke();
+  ctx.closePath();
+
+  ctx.beginPath();
+  ctx.arc((wavex + (180*5)),475,90, 0, Math.PI, false );
+  ctx.strokeStyle = "lightblue";
+  ctx.lineWidth = 10;
+  ctx.stroke();
+  ctx.closePath();
+
+  ctx.beginPath();
+  ctx.arc((wavex + (180*6)),475,90, 0, Math.PI, false );
+  ctx.strokeStyle = "lightblue";
+  ctx.lineWidth = 10;
+  ctx.stroke();
+  ctx.closePath();
+
+  ctx.beginPath();
+  ctx.arc((wavex + (180*7)),475,90, 0, Math.PI, false );
+  ctx.strokeStyle = "lightblue";
+  ctx.lineWidth = 10;
+  ctx.stroke();
+  ctx.closePath();
+
+  ctx.beginPath();
+  ctx.arc((wavex + (180 * 8)),475,90, Math.PI,( Math.PI * .5), true );
+  ctx.strokeStyle = "lightblue";
+  ctx.lineWidth = 10;
+  ctx.stroke();
+  ctx.closePath();    
+  
+  wavex -= velx;
+
+  // trying to use these as functions
+  const makeCircle = (color, x, y, radius, startAngle, endAngle, boolean) => {
+    ctx.beginPath();
+    ctx.arc(x, y, radius, startAngle, Math.PI*2, false);
+    ctx.strokeStyle = `${color}`;
+    ctx.lineWidth = 10;
+    ctx.fillStyle = `${color}`;
+    ctx.fill();
+    ctx.stroke();
+    ctx.closePath();
+  }
+
+  const makeLine = (color, startx, starty, endx, endy) => {
+    ctx.beginPath();
+    ctx.strokeStyle = `${color}`;
+    ctx.lineWidth = 3;
+    ctx.moveTo(startx,starty);
+    ctx.lineTo(endx,endy);
+    ctx.stroke();
+  }
+
+// rotating flowers
+ctx.save();
+ctx.rotate(0.14);
+
+// testing shape functions to make flowers
+makeLine("green",900,250,900,330);
+makeLine("lightgreen",850,200,850,340);
+
+makeCircle("pink", 900, 242, 8, 0);
+makeCircle("pink", 900, 258, 8, 0);
+makeCircle("pink", 892, 250, 8, 0);
+makeCircle("pink", 908, 250, 8, 0);
+makeCircle("white", 900, 250, 4, 0);
+
+makeCircle("white", 850, 190, 10, 0);
+makeCircle("white", 850, 210, 10, 0);
+makeCircle("white", 840, 200, 10, 0);
+makeCircle("white", 860, 200, 10, 0);
+makeCircle("yellow", 850, 200, 5, 0);
+
+ctx.restore();
+ 
+}
+    
+// calling animate function
+anim();
+</script>
+
+<script>
+
+
+</script>
+
+</body>
+</html>
