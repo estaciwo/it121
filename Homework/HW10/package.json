@@ -1,0 +1,19 @@
+{
+  "name": "hw10",
+  "version": "3.0.3",
+  "description": "test file for npm json package creation",
+  "main": "jsontest.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/estaciwo/it121.git#main"
+  },
+  "author": "eric staciwo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/estaciwo/it121/issues"
+  },
+  "homepage": "https://github.com/estaciwo/it121/tree/main#readme"
+}
